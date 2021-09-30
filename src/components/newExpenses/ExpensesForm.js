@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExpensesForm.css";
 
-const ExpensesForm = (event) => {
+const ExpensesForm = (props) => {
 
     const [enteredTitle,setEnteredTitle] = useState('');
     const [enteredAmount,setEnteredAmount] = useState('');
@@ -24,8 +24,10 @@ const ExpensesForm = (event) => {
     const expenseData = {
         title : enteredTitle,
         amount : enteredAmount,
-        date : enteredDate
+        date : new Date(enteredDate)
     }
+
+    props.onSave(expenseData);
 
     setEnteredTitle('');
     setEnteredAmount('');
@@ -37,20 +39,29 @@ const ExpensesForm = (event) => {
     return(
         <form onSubmit={submitForm}>
             <div className='new-expense__controls'>
-                <label>Title</label>
-                <input type='text' value={enteredTitle} onChange={titleChangeHandler}></input>
-            </div>
-            <div className='new-expense__controls'>
-                <label>Amount</label>
-                <input type='number' value={setEnteredAmount} onChange={amountChangeHandler}></input>
-            </div>
-            <div className='new-expense__controls'>
-                <label>Date</label>
-                <input type='date' value={setEnteredDate} onChange={dateChangeHandler}></input>
-            </div>                
+                <div className='new-expense__control'>
+                    <label>Title</label>
+                    <input type='text' 
+                    value={enteredTitle} 
+                    onChange={titleChangeHandler}/>
+                </div>
+                <div className='new-expense__control'>
+                    <label>Amount</label>
+                    <input type='number' 
+                    value={enteredAmount} 
+                    onChange={amountChangeHandler}/>
+                </div>
+                <div className='new-expense__control'>
+                    <label>Date</label>
+                    <input type='date' 
+                    value={enteredDate} 
+                    onChange={dateChangeHandler}/>
+                </div>  
+            </div>              
             <div className='new-expense__actions'>
+                <button type='button' onClick={props.stopEditingHandler}>Cancel</button>
                 <button type='submit'>Add Expenses</button>
-            </div>
+           </div>     
         </form>
     )
 }
