@@ -1,39 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Expense from "./components/Expenses/Expense";
-import ExpensesForm from "./components/newExpenses/ExpensesForm";
 import NewExpense from "./components/newExpenses/NewExpense";
 
 
-const app = () => {
-const expenses = [
-    {
-      id: 'e1',
-      title: 'Toilet Paper',
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
-    {
-      id: 'e3',
-      title: 'Car Insurance',
-      amount: 294.67,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: 'e4',
-      title: 'New Desk (Wooden)',
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-  ];
+const static_expense = [
+  {
+    id: 'e1',
+    title: 'Toilet Paper',
+    amount: 94.12,
+    date: new Date(2020, 7, 14),
+  },
+  { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+  {
+    id: 'e3',
+    title: 'Car Insurance',
+    amount: 294.67,
+    date: new Date(2021, 2, 28),
+  },
+  {
+    id: 'e4',
+    title: 'New Desk (Wooden)',
+    amount: 450,
+    date: new Date(2021, 5, 12),
+  },
+];
+
+const App = () => {
+
+
+const [expense, setExpense] = useState(static_expense);
+
+  const userDetails = (user) =>{
+      setExpense((prevexpenses) => {
+        return [user,...prevexpenses]
+      })
+  }
 
   return(
       <div>
-      <NewExpense />
-      <Expense item = {expenses} />
+      <NewExpense userDetails={userDetails}/>
+      <Expense item = {expense} />
       </div>
   )
 }
 
-export default app
+export default App
 

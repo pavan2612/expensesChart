@@ -9,8 +9,11 @@ const NewExpense = (props) => {
 
     const saveExpense = (data) => {
         const ExpenseData = {...data,id:Math.random().toString};
+        props.userDetails(ExpenseData)
+        setisEditing(false)
     }
 
+    
     const startEditingHandler = () => {
         setisEditing(true)
     }
