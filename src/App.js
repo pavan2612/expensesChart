@@ -27,7 +27,6 @@ const static_expense = [
 
 const App = () => {
 
-
 const [expense, setExpense] = useState(static_expense);
 
   const userDetails = (user) =>{
@@ -38,8 +37,8 @@ const [expense, setExpense] = useState(static_expense);
 
   return(
       <div>
-      <NewExpense userDetails={userDetails}/>
-      <Expense item = {expense} />
+        <NewExpense userDetails={userDetails}/>
+        <Expense item = {expense} />
       </div>
   )
 }
