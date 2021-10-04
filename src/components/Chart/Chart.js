@@ -6,18 +6,19 @@ const Chart = (props) => {
     const expensesValue = props.datapoint.map((dataPoint) => {
             return dataPoint.val
     })
-    const maximumValue = [...expensesValue]
+    const maximumValue = Math.max(...expensesValue)
 
     return(
-    <div>
-        {props.datapoint.map((datapoint) => {
+    <div className='chart'>
+        {props.datapoint.map((eachdatapoint) => {
+            return(
         <ChartBar 
-        key = {datapoint.label}
-        value = {datapoint.val}
+        key = {eachdatapoint.label}
+        value = {eachdatapoint.val}
         max = {maximumValue}
-        label = {datapoint.label}
+        label = {eachdatapoint.label}
         />
-})}
+        )})}
     </div>)
 }
 

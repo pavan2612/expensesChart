@@ -20,7 +20,7 @@ const ExpenseChart = (props) => {
     
     for(let dataPoint of props.item){
         const month = dataPoint.date.getMonth()
-        dataPoints[month].val += dataPoint.val
+        dataPoints[month].val += dataPoint.amount
     }
 
     return(
